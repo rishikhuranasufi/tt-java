@@ -50,8 +50,8 @@ pipeline {
 			sh 'echo " " >> ~/deploy.sh'
 			sh 'echo "#!/bin/bash" >> ~/deploy.sh'
                         sh 'echo "export BUILD_ID=dontKillMe" >> ~/deploy.sh'
-			sh 'echo "nohup java -jar ~/app1.jar > ~/applogs.log 2>&1 &"'
-                        sh 'ssh -i ${privatefile} ubuntu@3.12.104.242 ~/deploy.sh /home/ubuntu'
+			sh 'echo "nohup java -jar ~/app1.jar > ~/applogs.log 2>&1 &" >> ~/deploy.sh'
+                        sh 'scp -i ${privatefile} ~/deploy.sh ubuntu@3.12.104.242:/home/ubuntu/'
 			sh 'ssh -i ${privatefile} ubuntu@3.12.104.242 bash ~/deploy.sh'
                         //sh 'screen -d -m ssh -i ${privatefile} ubuntu@3.12.104.242 java -jar ~/app1.jar'
                     }
