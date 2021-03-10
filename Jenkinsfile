@@ -47,7 +47,7 @@ pipeline {
                 withCredentials([sshUserPrivateKey(credentialsId: 'python', keyFileVariable: 'privatefile', passphraseVariable: '', usernameVariable: 'username')]) {             
                         sh 'scp -i ${privatefile} ./target/*.jar ubuntu@3.12.104.242:~/app1.jar'
 			sh 'touch deploy.sh'
-			sh 'echo " " >> ~/deploy.sh'
+			sh 'echo " " > ~/deploy.sh'
 			sh 'echo "#!/bin/bash" >> ~/deploy.sh'
                         sh 'echo "export BUILD_ID=dontKillMe" >> ~/deploy.sh'
 			sh 'echo "nohup java -jar ~/app1.jar > ~/applogs.log 2>&1 &" >> ~/deploy.sh'
