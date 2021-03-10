@@ -9,7 +9,7 @@ pipeline {
         }
 	 stage('Pull Source Code') {
             steps {
-		git credentialsId: 'hp', url: 'git@bitbucket.org:technotrainer-mod-dev/java-project.git'
+		git credentialsId: 'hp', url: 'git@github.com:rishikhuranasufi/tt-java.git'
             }
         }
         stage ('Initialize') {
