@@ -46,6 +46,7 @@ pipeline {
                 unstash("tt-java-artifact")
                 withCredentials([sshUserPrivateKey(credentialsId: 'python', keyFileVariable: 'privatefile', passphraseVariable: '', usernameVariable: 'username')]) {             
                         sh 'scp -i ${privatefile} ./target/*.jar ubuntu@3.12.104.242:~/app1.jar'
+			sh 'touch deploy.sh'
 			sh 'echo " " >> deploy.sh'
 			sh 'echo "#!/bin/bash" >> deploy.sh'
                         sh 'export BUILD_ID=dontKillMe'
