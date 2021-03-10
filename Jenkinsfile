@@ -48,7 +48,7 @@ pipeline {
                         sh 'scp -i ${privatefile} ./target/*.jar ubuntu@3.12.104.242:~/app1.jar'
                         //sh 'export BUILD_ID=dontKillMe'
                         sh 'ssh -i ${privatefile} ubuntu@3.12.104.242 export JENKINS_NODE_COOKIE=dontKillMe'
-			sh 'ssh -i ${privatefile} ubuntu@3.12.104.242 nohup java -jar /dev/null > ~/applogs.log 2>&1 &'
+			sh 'ssh -i ${privatefile} ubuntu@3.12.104.242 nohup java -jar ~/app1.jar /dev/null > ~/applogs.log 2>&1 &'
                         //sh 'screen -d -m ssh -i ${privatefile} ubuntu@3.12.104.242 java -jar ~/app1.jar'
                     }
                 }
