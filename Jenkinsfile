@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    tools{
+    maven 'maven 3'
+    jdk 'java 8'
+    }
 
     stages {
         stage('Delete the Workspace') {
@@ -10,16 +14,6 @@ pipeline {
 	 stage('Pull Source Code') {
             steps {
 		git credentialsId: 'hp', url: 'git@github.com:rishikhuranasufi/tt-java.git'
-            }
-        }
-        stage ('Initialize') {
-            steps {
-                sh '''
-                    cd /usr/local
-                    sudo wget https://www-eu.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
-                    sudo tar xzf apache-maven-3.6.3-bin.tar.gz
-                    sudo ln -sf apache-maven-3.6.3 maven                    
-                '''
             }
         }
 
