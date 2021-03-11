@@ -45,13 +45,13 @@ pipeline {
             steps {                
                 unstash("tt-java-artifact")
                 withCredentials([sshUserPrivateKey(credentialsId: 'python', keyFileVariable: 'privatefile', passphraseVariable: '', usernameVariable: 'username')]) {             
-                        sh 'scp -i ${privatefile} ./target/*.jar ubuntu@3.12.104.242:~/app1.jar'
+                        sh 'scp -i ${privatefile} ./target/*.jar ubuntu@3.12.104.242:~/app.jar'
 			sh ' pwd'
 			sh ' ls -lart'
 			sh ' cat deploy.sh'
                         sh 'scp -i ${privatefile} deploy.sh ubuntu@3.12.104.242:/home/ubuntu/'
 			sh 'ssh -i ${privatefile} ubuntu@3.12.104.242 bash /home/ubuntu/deploy.sh'
-                        //sh 'screen -d -m ssh -i ${privatefile} ubuntu@3.12.104.242 java -jar ~/app1.jar'
+                        //sh 'screen -d -m ssh -i ${privatefile} ubuntu@3.12.104.242 java -jar ~/app.jar'
                     }
                 }
             }
